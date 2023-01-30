@@ -7,7 +7,7 @@ public class JogoVelha {
         Campo[][] velha=new Campo[3][3];
         char simboloAtual='X';
         boolean game=true;
-        String vitoria="";
+        char vitoria=' ';
         Scanner scan=new Scanner(System.in);
 
 
@@ -16,7 +16,7 @@ public class JogoVelha {
         while(game){
             desenhaJogo(velha);
             vitoria=verificaVitoria(velha);
-            if(!vitoria.equals("")){
+            if(vitoria!=(' ')){
                 System.out.printf("Jogador %s venceu%n", vitoria);
                 break;
             }
@@ -40,7 +40,7 @@ public class JogoVelha {
 
 
     public static void desenhaJogo(Campo[][] velha){
-        //limpar tela();
+        
         System.out.println("    0   1   2");
         System.out.printf("0   %c | %c | %c %n",velha[0][0].getSimbolo(),velha[0][1].getSimbolo(),velha[0][2].getSimbolo());
         System.out.println("   ------------");
@@ -86,11 +86,42 @@ public class JogoVelha {
     }
 
 
-    public static String verificaVitoria(Campo[][] velha){
-        return "";
+    public static char verificaVitoria(Campo[][] velha){
+        for(int i=0;i<3;i++){
+
+			if((velha[i][0].getSimbolo()=='X' && velha[i][1].getSimbolo()=='X' && velha[i][2].getSimbolo()=='X')||(velha[i][0].getSimbolo()=='O' && velha[i][1].getSimbolo()=='O' && velha[i][2].getSimbolo()=='O')){
+
+				return velha[i][0].getSimbolo();
+
+			}
+
+		}
+
+		for(int i=0;i<3;i++){
+
+			if((velha[0][i].getSimbolo()=='X' && velha[1][i].getSimbolo()=='X' && velha[2][i].getSimbolo()=='X')||(velha[0][i].getSimbolo()=='O' && velha[1][i].getSimbolo()=='O' && velha[2][i].getSimbolo()=='O')){
+
+				return velha[0][i].getSimbolo();
+
+			}
+
+		}
+
+		if((velha[0][0].getSimbolo()=='X' && velha[1][1].getSimbolo()=='X' && velha[2][2].getSimbolo()=='X')||(velha[0][2].getSimbolo()=='O' && velha[1][1].getSimbolo()=='O' && velha[2][0].getSimbolo()=='O')){
+
+			return velha[0][0].getSimbolo();
+
+		}
+
+		return ' ';
+
+	}
+
+
+        
+        
 
     }
 
 
 
-}
